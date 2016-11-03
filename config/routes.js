@@ -16,12 +16,7 @@ router.get('/',function(req, res){
 
 
 //Groups
-router.post('/group', groupController.createGroup);
-router.get('/groups/:id', groupController.getGroupsById);
-router.delete('/group/:idgroup', groupController.deleteGroup);
-router.put('/group/accept', groupController.acceptGroupInvitation);
-router.put('/group/deny', groupController.denyGroupInvitation);
-router.put('/group/:idGroup/transaction',groupController.updateTransaction);
+router.get('/groups/:id', exampleController.getGroupsById);
 
 
 
