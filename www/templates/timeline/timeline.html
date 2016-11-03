@@ -1,0 +1,70 @@
+<ion-view view-title="Timeline" >
+  
+  <ion-content class="home">
+   <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()">
+   </ion-refresher>         
+
+    <div class="padding" if="transactions">
+        <div class="div-principal" ng-repeat="transaction in transactions" >
+          <div class="item item-body time-body">            
+                  {{transaction.createdAt | relativeDate}}
+          </div>
+          <div class="div-tipos">              
+              <div ng-if="transaction.creditor.phone.value == phone" class="divCreditor">
+                <img  class="icon-timeline" src="img/creditor_white.svg">
+              </div>
+              <div ng-if="transaction.creditor.phone.value != phone" class="divDebitor">
+                <img  class="icon-timeline" src="img/creditor_white.svg">
+              </div>
+          </div>
+          <div class="div-shop" ng-click=" transaction.status == 'accepted' && timelineModal(transaction)">
+             <div class="title-body-accepted" ng-if="transaction.status == 'accepted'">Aceito - Aguardado Pagamento</div>
+             <div class="title-body-paid-creditor" ng-if="transaction.status == 'paid' && transaction.creditor.phone.value == phone">Pago</div>
+             <div class="title-body-paid-debtor" ng-if="transaction.status == 'paid' && transaction.debtor.phone.value == phone">Pago</div>
+             <div class="title-body-pending" ng-if="transaction.status == 'pending'">Pendente</div>             
+             <div class="title-body-denied" ng-if="transaction.status == 'denied'">Negado</div>
+             <div class="title-body-pending" ng-if="transaction.status == 'paymentConfirm'">Aguardando confirmar pagamento</div>
+             
+             <p class="color-text-timeline" ng-if="transaction.status != 'paid' && transaction.creditor.phone.value == phone && transaction.debtor.name">
+                O <label class="text-content-timeline">{{transaction.debtor.name}}</label> de telefone <label class="text-content-timeline">{{transaction.debtor.phone.value}}</label> tem uma transação com você no valor de: <label class="text-content-timeline">R$ {{transaction.valueTotal}} </label>
+             </p>
+             <p class="color-text-timeline" ng-if="transaction.creditor.phone.value == phone && !transaction.debtor.name">
+                O telefone <label class="text-content-timeline">{{transaction.debtor.phone.value}}</label> tem uma transação com você no valor de: <label class="text-content-timeline">R$ {{transaction.valueTotal}} </label>
+             </p>
+             <p class="color-text-timeline" ng-if="transaction.status != 'paid' && transaction.creditor.phone.value != phone && transaction.creditor.name">
+                O <label class="text-content-timeline-red">{{transaction.creditor.name}}</label> de telefone <label class="text-content-timeline-red">{{transaction.creditor.phone.value}}</label> tem uma transação com você no valor de: <label class="text-content-timeline-red">R$ {{transaction.valueTotal}} </label>
+             </p>
+             <p class="color-text-timeline" ng-if="transaction.creditor.phone.value != phone && !transaction.creditor.name">
+                O telefone <label class="text-content-timeline-red">{{transaction.creditor.phone.value}}</label> tem uma transação com você no valor de: <label class="text-content-timeline-red">R$ {{transaction.valueTotal}} </label>
+             </p>
+
+              <!--Transações parcialmente pagas -->
+              <p class="color-text-timeline" ng-if="transaction.valueTotal > transaction.valuePaid && transaction.status == 'paid' && transaction.creditor.phone.value == phone && transaction.debtor.name">
+                O <label class="text-content-timeline">{{transaction.debtor.name}}</label> de telefone <label class="text-content-timeline">{{transaction.debtor.phone.value}}</label> pagou a você <label class="text-content-timeline">R$ {{transaction.valuePaid}} </label>, do total de <label class="text-content-timeline">R$ {{transaction.valueTotal}} </label>
+             </p>
+
+              <p class="color-text-timeline" ng-if="transaction.valueTotal > transaction.valuePaid && transaction.status == 'paid' && transaction.creditor.phone.value != phone && transaction.creditor.name">
+                Você pagou o valor de <label class="text-content-timeline-red">R$ {{transaction.valuePaid}} </label> do total de <label class="text-content-timeline-red">R$ {{transaction.valueTotal}} </label>, para o seu amigo <label class="text-content-timeline-red">{{transaction.creditor.name}}</label> de telefone <label class="text-content-timeline-red">
+                  {{transaction.creditor.phone.value}}</label>  
+              </p>
+
+              <p class="color-text-timeline" ng-if="transaction.valueTotal == transaction.valuePaid && transaction.status == 'paid' && transaction.creditor.phone.value == phone">
+                O seu amigo <label class="text-content-timeline">{{transaction.debtor.name}}</label> de telefone <label class="text-content-timeline">{{transaction.debtor.phone.value}}</label> quitou a transação com você no valor de <label class="text-content-timeline">R$ {{transaction.valuePaid}} </label>
+             </p>
+
+              <p class="color-text-timeline" ng-if="transaction.valueTotal == transaction.valuePaid && transaction.status == 'paid' && transaction.creditor.phone.value != phone ">
+                Você quitou a transação com o valor de <label class="text-content-timeline-red">R$ {{transaction.valuePaid}} </label>  com o seu amigo <label class="text-content-timeline-red">{{transaction.creditor.name}}</label> de telefone <label class="text-content-timeline-red">
+                  {{transaction.creditor.phone.value}}</label>  
+              </p>
+
+          </div>  
+        </div>
+    </div>
+    <ion-item style="background: none; border: none; margin-left: 10%;">
+      <div ng-hide="transactions.length > 0">
+        <p> Não há nada de transações no momento </p>
+      </div>
+    </ion-item>
+  </ion-content>
+
+</ion-view>
