@@ -1,7 +1,7 @@
 {
-  "name": "friendsmoney",
+  "name": "nodejs rest api",
   "version": "1.0.0",
-  "description": "API do Aplicativo de Gerenciamento de dívidas entre amigos: FriendsMoney.",
+  "description": "API NodeJS rest",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
@@ -9,18 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://adrianlemess@bitbucket.org/friendsmoney/api.git"
+    "url": "https://github.com/guilhermewm/Node"
   },
   "keywords": [
-    "dividas",
-    "amigos",
-    "friends",
-    "money",
-    "transactions",
-    "transações",
-    "friendsmoney"
+    "api",
+    "node",
+    "nodejs",
+    "rest"
   ],
-  "author": "POC/DbServer",
+  "author": "guilhermewm",
   "license": "ISC",
   "dependencies": {
     "async": "^2.0.1",

@@ -21,11 +21,18 @@
         "message"   :"Registration failure."
  
       },
+       
+      "msg_find_failure_transaction"     : {
+ 
+        "result" : "error",
+        "message" : "Unable to find a transaction"
+ 
+      },
  
       "msg_reg_exists"  : {
  
         "result"    :"error",
-        "message"   :"Pending already created."
+        "message"   :"Group already created."
  
       },
       "msg_reg_exists_update":{
@@ -36,24 +43,24 @@
       "msg_del_failure" : {
  
          "result" : "error",
-         "message" : "Unable to remove a Pending"
+         "message" : "Unable to remove a group"
  
       },
        "msg_find_failure" : {
  
          "result" : "error",
-         "message" : "Unable to find a Pending"
+         "message" : "Unable to find a group"
  
       },
       "msg_no_register" : {
  
          "result" : "error",
-         "message" : "Pending not found"
+         "message" : "Group not found"
       },
       "msg_empty_database" : {
  
          "result" : "error",
-         "message" : "There is no pendencies yet"
+         "message" : "There is no groups yet"
       },
       "msg_mongo_error":{
         "result": "error",
@@ -67,20 +74,26 @@
       "msg_reg_success" : {
  
         "result"    : "success",
-        "message"   : "Pending successfully Created."
+        "message"   : "Group successfully Created."
+ 
+      },
+      "msg_reg_transaction_success" : {
+ 
+        "result"    : "success",
+        "message"   : "Group Transaction successfully Created."
  
       },
  
         "msg_del_success"  : {
  
          "result" :  "success",
-         "message" : "Pending successfully removed"
+         "message" : "Group successfully removed"
  
         },
         "msg_update_success" : {
  
          "result"    : "success",
-         "message"   : "Pending successfully updated."
+         "message"   : "Group successfully updated."
  
       }
    }

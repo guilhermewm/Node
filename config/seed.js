@@ -48,17 +48,17 @@ var user4 = new User(
 )
 function populateUser(user1, user2,user3, callback){
     User.find({}).remove(function() {
-        userService.registerUserDevice(user1, function(response){    
+        userService.registerUserDevice(user1, function(response){
             if (response) console.log(response);
-            userService.registerUserFromTransaction(user2, function(response){    
+            userService.registerUserFromTransaction(user2, function(response){
                 if (response) console.log(response);
-                userService.registerUserDevice(user3, function(response){    
+                userService.registerUserDevice(user3, function(response){
                     if (response){
                         console.log(response);
                         callback(true);
-                    }                     
+                    }
                 })
-              
+
             })
         })
     })
@@ -119,5 +119,3 @@ populateUser(user1, user2,user3, function(response){
     }
 })
 })
-
-

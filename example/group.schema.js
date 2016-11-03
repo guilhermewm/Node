@@ -1,11 +1,11 @@
 /**
- *Group Schema 
- * 
+ *Group Schema
+ *
  */
 var mongoose = require('mongoose');
 
 var groupSchema = mongoose.Schema({
-    title:{type:String, required:true},
+  title:{type:String, required:true},
 	description:String,
 	mode:String,
     members:[{

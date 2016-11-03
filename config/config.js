@@ -15,7 +15,8 @@ config.server = {
 
 // MongoDB settings
 config.mongodb = {
-    dbURI: "mongodb://127.0.0.1:27017/friendsmoney"
+    //URL mongodb, example:
+    //dbURI: "mongodb://127.0.0.1:27017/dbs_name"
 };
 
 // Export configuration object
